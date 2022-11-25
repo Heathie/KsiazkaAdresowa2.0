@@ -124,5 +124,8 @@ void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika()
 
 void UzytkownikMenedzer::wylogowanieUzytkownika(){
     idZalogowanegoUzytkownika = 0;
-    //adresaci.clear();
+}
+
+int UzytkownikMenedzer::pobierzIdZalogowanegoUzytkownika(){
+    return idZalogowanegoUzytkownika;
 }
