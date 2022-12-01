@@ -1,24 +1,29 @@
 #include "AdresatMenedzer.h"
 
-int AdresatMenedzer::dodajAdresata(int idZalogowanegoUzytkownika)
+void AdresatMenedzer::dodajAdresata()
 {
     Adresat adresat;
 
     system("cls");
     cout << " >>> DODAWANIE NOWEGO ADRESATA <<<" << endl << endl;
-    adresat = podajDaneNowegoAdresata(idZalogowanegoUzytkownika);
+    adresat = podajDaneNowegoAdresata();
 
     adresaci.push_back(adresat);
-    plikZAdresatami.dopiszAdresataDoPliku(adresat);
-
-    return idOstatniegoAdresata;
+    if (plikZAdresatami.dopiszAdresataDoPliku(adresat)){
+        cout << "Nowy adresat zostal dodany" << endl;
+    }
+    else{
+        cout << "Blad. Nie udalo sie dodac nowego adresata" << endl;
+    }
+    system("pause");
 }
 
-Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika)
+Adresat AdresatMenedzer::podajDaneNowegoAdresata()
 {
     Adresat adresat;
-    adresat.ustawIdAdresata(++idOstatniegoAdresata);
-    adresat.ustawIdUzytkownikaDoKtoregoNalezyAdresat(idZalogowanegoUzytkownika);
+
+    adresat.ustawIdAdresata((plikZAdresatami.pobierzIdOstatniegoAdresata() + 1));
+    adresat.ustawIdUzytkownikaDoKtoregoNalezyAdresat(ID_ZALOGOWANEGO_UZYTKOWNIKA);
 
     cout << "Podaj imie: ";
     adresat.ustawImie(MetodyPomocnicze::wczytajLinie());
@@ -38,9 +43,6 @@ Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika)
     adresat.ustawAdres(MetodyPomocnicze::wczytajLinie());
 
     return adresat;
-}
-void AdresatMenedzer::wyczyscAdresatow(){
-    adresaci.clear();
 }
 
 void AdresatMenedzer::wyswietlWszystkichAdresatow(){
@@ -69,8 +71,4 @@ void AdresatMenedzer::wyswietlDaneAdresata(Adresat adresat){
     cout << "Numer telefonu:     " << adresat.pobierzNumerTelefonu() << endl;
     cout << "Email:              " << adresat.pobierzEmail() << endl;
     cout << "Adres:              " << adresat.pobierzAdres() << endl;
-}
-
-void AdresatMenedzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika){
-    idOstatniegoAdresata = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
 }

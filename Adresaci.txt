@@ -1,0 +1,5 @@
+1|1|Karolina|Lewandowska|123|123|123|
+2|1|Halina|Walak|234|234|234|
+3|2|Przemyslaw|Lewandowski|123|123|123|
+4|2|Ala|Ma|kota|98|98|
+5|1|Asd|Qwe|zxc|qwe|asd|
