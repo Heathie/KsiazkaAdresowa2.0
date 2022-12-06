@@ -30,5 +30,6 @@ public:
     void dodajAdresata();
     void wyswietlWszystkichAdresatow();
     bool czyUzytkownikJestZalogowany();
+    void wyszukajAdresatowPoImieniu();
 };
 #endif

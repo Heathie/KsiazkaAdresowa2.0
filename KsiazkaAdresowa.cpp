@@ -49,3 +49,9 @@ bool KsiazkaAdresowa::czyUzytkownikJestZalogowany(){
         return false;
     }
 }
+
+void KsiazkaAdresowa::wyszukajAdresatowPoImieniu(){
+    if (uzytkownikMenedzer.czyUzytkownikJestZalogowany()){
+        adresatMenadzer->wyszukajAdresatowPoImieniu();
+    }
+}

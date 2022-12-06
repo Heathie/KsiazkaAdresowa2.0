@@ -28,6 +28,7 @@ public:
     };
     void dodajAdresata();
     void wyswietlWszystkichAdresatow();
-
+    void wyszukajAdresatowPoImieniu();
+    void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
 };
 #endif

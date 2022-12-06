@@ -6,11 +6,11 @@ bool PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat)
     fstream plikTekstowy;
     plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
 
-    if (plikTekstowy.good() == true)
+    if (plikTekstowy.good())
     {
         liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
 
-        if (PlikTekstowy::czyPlikJestPusty(plikTekstowy) == true)
+        if (PlikTekstowy::czyPlikJestPusty(plikTekstowy))
         {
             plikTekstowy << liniaZDanymiAdresata;
         }
