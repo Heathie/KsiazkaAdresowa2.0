@@ -55,3 +55,9 @@ void KsiazkaAdresowa::wyszukajAdresatowPoImieniu(){
         adresatMenadzer->wyszukajAdresatowPoImieniu();
     }
 }
+
+void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku(){
+    if (uzytkownikMenedzer.czyUzytkownikJestZalogowany()){
+        adresatMenadzer->wyszukajAdresatowPoNazwisku();
+    }
+}
