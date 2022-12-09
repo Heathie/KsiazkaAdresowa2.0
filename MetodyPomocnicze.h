@@ -19,6 +19,8 @@ public:
     static char wybierzOpcjeZMenuGlownego();
     static char wybierzOpcjeZMenuUzytkownika();
     static char wczytajZnak();
+    static int wczytajLiczbeCalkowita();
+    static char wybierzOpcjeZMenuEdycja();
 };
 
 #endif

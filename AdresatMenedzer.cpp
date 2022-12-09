@@ -144,3 +144,102 @@ void AdresatMenedzer::wyszukajAdresatowPoNazwisku()
     cout << endl;
     system("pause");
 }
+
+void AdresatMenedzer::edytujAdresata()
+{
+    system("cls");
+    Adresat adresat;
+    int idEdytowanegoAdresata = 0;
+
+    cout << ">>> EDYCJA WYBRANEGO ADRESATA <<<" << endl << endl;
+    idEdytowanegoAdresata = podajIdWybranegoAdresata();
+
+    char wybor;
+    bool czyIstniejeAdresat = false;
+
+    for (int i = 0; i < (int) adresaci.size(); i++)
+    {
+        if (adresaci[i].pobierzIdAdresata() == idEdytowanegoAdresata)
+        {
+            czyIstniejeAdresat = true;
+            wybor = MetodyPomocnicze::wybierzOpcjeZMenuEdycja();
+
+            switch (wybor)
+            {
+            case '1':
+                cout << "Podaj nowe imie: ";
+                adresaci[i].ustawImie(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
+                break;
+            case '2':
+                cout << "Podaj nowe nazwisko: ";
+                adresaci[i].ustawNazwisko(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
+                break;
+            case '3':
+                cout << "Podaj nowy numer telefonu: ";
+                adresaci[i].ustawNumerTelefonu(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
+                break;
+            case '4':
+                cout << "Podaj nowy email: ";
+                adresaci[i].ustawEmail(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
+                break;
+            case '5':
+                cout << "Podaj nowy adres zamieszkania: ";
+                adresaci[i].ustawAdres(MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(MetodyPomocnicze::wczytajLinie()));
+                break;
+            case '6':
+                cout << endl << "Powrot do menu uzytkownika" << endl << endl;
+                break;
+            default:
+                cout << endl << "Nie ma takiej opcji w menu! Powrot do menu uzytkownika." << endl << endl;
+                return;
+            }
+            plikZAdresatami.zaktualizujDaneWybranegoAdresataWPliku(adresaci[i], false);
+        }
+    }
+    cout<< "Dane zostaly zaktualizowane"<<endl;
+    if (czyIstniejeAdresat == false)
+    {
+        cout << endl << "Nie ma takiego adresata." << endl << endl;
+    }
+    system("pause");
+}
+
+int AdresatMenedzer::podajIdWybranegoAdresata()
+{
+    int idWybranegoAdresata = 0;
+    cout << "Podaj numer ID Adresata: ";
+    idWybranegoAdresata  = MetodyPomocnicze::wczytajLiczbeCalkowita();
+    return idWybranegoAdresata;
+}
+
+void AdresatMenedzer::usunAdresata() {
+    int idUsuwanegoAdresata = 0;
+    int indeksAdresataDoUsuniecia=-1;
+    char potwierdzenie;
+    cout << ">>> USUWANIE WYBRANEGO ADRESATA <<<";
+    idUsuwanegoAdresata = podajIdWybranegoAdresata();
+
+    for (int i=0; i< (int) adresaci.size(); i++) {
+        if (adresaci[i].pobierzIdAdresata()==idUsuwanegoAdresata) {
+            if(adresaci[i].pobierzIdUzytkownikaDoKtoregoNalezyAdresat() != ID_ZALOGOWANEGO_UZYTKOWNIKA) {
+                break;
+            }
+            indeksAdresataDoUsuniecia=i;
+            break;
+        }
+    }
+
+    if (indeksAdresataDoUsuniecia==-1) {
+        cout<<"Nie ma takiego adresata w bazie"<<endl;
+        system("pause");
+        return;
+    }
+    cout << "Potwierdz naciskajac klawisz 't': ";
+    potwierdzenie = MetodyPomocnicze::wczytajZnak();
+
+    if (potwierdzenie == 't') {
+        plikZAdresatami.zaktualizujDaneWybranegoAdresataWPliku(adresaci[indeksAdresataDoUsuniecia], true);
+        adresaci.erase(adresaci.begin()+indeksAdresataDoUsuniecia);
+        cout<<"Adresat usuniety"<<endl;
+    }
+}

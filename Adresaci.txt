@@ -1,3 +1,5 @@
-1|1|Ania|Kowalska|123|123|123|
-2|1|Ania|Nowak|123|123|123|
-3|1|Ela|Nowak|123|123|123|
+2|1|Ela|Kowalska|123|23|123|
+6|2|Kwadrat|Kolo|elo|123|123|
+7|1|Ania|Asd|asd|asd|asd|
+8|1|Ania|Nowak|123|123|123|
+9|1|Ela|Nowak|123|123|123|

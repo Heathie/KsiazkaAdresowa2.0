@@ -61,3 +61,15 @@ void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku(){
         adresatMenadzer->wyszukajAdresatowPoNazwisku();
     }
 }
+
+void KsiazkaAdresowa::edytujAdresata(){
+    if (uzytkownikMenedzer.czyUzytkownikJestZalogowany()){
+        adresatMenadzer->edytujAdresata();
+    }
+}
+
+void KsiazkaAdresowa::usunAdresata(){
+    if (uzytkownikMenedzer.czyUzytkownikJestZalogowany()){
+        adresatMenadzer->usunAdresata();
+    }
+}
